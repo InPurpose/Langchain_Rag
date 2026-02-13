@@ -9,6 +9,8 @@ from typing import List
 from langchain_chroma import Chroma
 
 from dataclasses import dataclass
+from src.logging_config import setup_logging
+import logging
 
 CHROMA_PATH = "chroma"
 
@@ -75,8 +77,12 @@ def generate_response(prompt):
 def init():
     dotenv.load_dotenv()
 
+
     if not os.getenv("GOOGLE_API_KEY"):
-      raise ValueError(" Please provide GEMINI_API_KEY as an environment variable")
+        logger = logging.getLogger(__name__)
+
+        logger.error("Environment variable GOOGLE_API_KEY is not set")
+        raise ValueError("GOOGLE_API_KEY is required but not provided")
 
 
 def query_rag(query_text: str):

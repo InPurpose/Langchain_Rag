@@ -1,0 +1,16 @@
+# enviroments
+.env
+.venv
+
+# database
+chroma/
+
+# cache
+src/__pycache__
+__pycache__/
+
+# output
+output/
+
+# logs
+logs/*.log
